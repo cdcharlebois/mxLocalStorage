@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="LocalStorage.widget.LocalStorageReader" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/" mobile="true">
+    <name>LocalStorage Reader</name>
+    <description>The description of this widget.</description>
+
+    <icon />
+
+    <properties>
+       <property key="keyName" type="string" required="true" defaultValue="mxkey">
+           <caption>LocalStorage Key name</caption>
+           <category>General</category>
+           <description></description>
+       </property>
+       <property key="entity" type="entity" required="true">
+           <caption>Entity to create</caption>
+           <category>General</category>
+           <description></description>
+       </property>
+       <property key="attribute" type="attribute" entityProperty="entity" required="true" isPath="optional" pathType="reference">
+           <caption>Attribute to use</caption>
+           <category>General</category>
+           <description></description>
+           <attributeTypes>
+               <attributeType name="String" />
+           </attributeTypes>
+       </property>
+       <property key="onfoundMF" type="microflow" required="false" entityProperty="entity">
+           <caption>On Found</caption>
+           <category>General</category>
+           <description>microflow to run when the LocalStorage item is found. Receives the item's value as a string parameter.</description>
+           <returnType type="Void"></returnType>
+       </property>
+    </properties>
+</widget>

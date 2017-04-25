@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="LocalStorage.widget.LocalStorageWriter" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/" mobile="true">
+    <name>LocalStorage Writer</name>
+    <description>The description of this widget.</description>
+
+    <icon />
+
+    <properties>
+       <property key="keyName" type="string" required="true" defaultValue="mxkey">
+           <caption>LocalStorage Key name</caption>
+           <category>General</category>
+           <description></description>
+       </property>
+       <property key="overwrite" type="boolean" required="true" defaultValue="true">
+           <caption>Overwrite?</caption>
+           <category>General</category>
+           <description></description>
+       </property>
+       <property key="onnullMF" type="microflow" required="false">
+           <caption>On Found</caption>
+           <category>General</category>
+           <description>microflow to run when the LocalStorage item is found. Receives the item's value as a string parameter.</description>
+           <returnType type="String"></returnType>
+       </property>
+    </properties>
+</widget>
