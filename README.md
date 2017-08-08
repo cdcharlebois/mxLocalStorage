@@ -1,4 +1,5 @@
 ![badge](https://img.shields.io/badge/mendix-6.10.3-green.svg)
+![badge](https://img.shields.io/badge/mendix-7.3.0-green.svg)
 
 # LocalStorage Reader and Writer
 
