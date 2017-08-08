@@ -17,6 +17,8 @@ Write information to the client's browser, and read it when they return.
         + `LocalStorage Key Name`: The name of the key for which the value will be saved
         + `Overwrite?` : if set to **No**, the widget will not overwrite the value of the LocalStorage item if the key is found to exist already.
         + `Value to Store`: microflow that **Returns a string** of the value to be saved in LocalStorage (Tip: use [This JSON Web Tokens Module](https://appstore.home.mendix.com/link/app/38385/FlowFabric-BV/JSON-Web-Tokens))
+        + `Re-Write on change` : set to 'Yes' to re-write when the 'on-change' attribute is set
+        + `OnChange Attribute` : When the value of this attribute is changed, the LS item will be re-written. Leave as **empty** to re-write on context change.
     - **Reader**
         + `LocalStorage Key Name`: The name of the key for which the value will be read
         + `Entity to Create`: The widget needs to create an entity in order to pass a parameter into the microflow, so choose that entity here.
