@@ -26,5 +26,27 @@
            <description>Microflow to generate the value to be saved in the LS item. Should return a string.</description>
            <returnType type="String"></returnType>
        </property>
+       <property key="reWriteOnChange" type="boolean" required="true" defaultValue="false">
+           <caption>Re-Write on change</caption>
+           <category>General</category>
+           <description>Re-Write the value on attribute change (set 'OnChange Attribute')</description>
+       </property>
+       <property key="attribute" type="attribute" required="false" isPath="optional" pathType="reference">
+           <caption>OnChange attribute</caption>
+           <category>General</category>
+           <description>When the value at this attribute is changed, the LS item will be re-written. Leave as null to write on context-change.</description>
+            <attributeTypes>
+               <attributeType name="AutoNumber"/>
+               <attributeType name="Binary"/>
+               <attributeType name="Boolean"/>
+               <attributeType name="DateTime"/>
+               <attributeType name="Decimal"/>
+               <attributeType name="Enum"/>
+               <attributeType name="HashString"/>
+               <attributeType name="Integer"/>
+               <attributeType name="Long"/>
+               <attributeType name="String"/>
+           </attributeTypes> 
+       </property>
     </properties>
 </widget>
