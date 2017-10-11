@@ -39,7 +39,7 @@ define([
 
         update: function(obj, callback) {
             logger.debug(this.id + ".update");
-
+            this._contextObj = obj;
             // 1. see if localstorage item exists
             // 2. if it does, call the onfoundMF
             // vvv--- BELOW WILL BE IN A PARTNER WIDGET ---vvv
@@ -53,26 +53,50 @@ define([
             }
             // 1
             if (localStorage.getItem(this.keyName)) {
+                if (/^true|false$/.test(localStorage.getItem(this.keyName))) {
+                    // boolean
+                    this._contextObj.set(this.attribute, (/^true$/.test(localStorage.getItem(this.keyName)) ? true : false));
+                } else if (localStorage.getItem(this.keyName) !== "null") {
+                    // string
+                    this._contextObj.set(this.attribute, localStorage.getItem(this.keyName));
+                }
+
+                if (this.onfoundMF) {
+                    mx.data.action({
+                        params: {
+                            actionname: this.onfoundMF,
+                            applyto: "selection",
+                            guids: [this._contextObj.getGuid()]
+                        },
+                        callback: function(res) {
+                            console.debug(res);
+                        },
+                        error: function(err) {
+                            console.error(err);
+                        }
+                    });
+                }
+
                 // 2
-                mx.data.create({
-                    entity: this.entity,
-                    callback: lang.hitch(this, function(obj) {
-                        obj.set(this.attribute, localStorage.getItem(this.keyName));
-                        mx.data.action({
-                            params: {
-                                actionname: this.onfoundMF,
-                                applyto: "selection",
-                                guids: [obj.getGuid()]
-                            }
-                        });
-                    }),
-                    err: function(e) {
-                        console.log(e);
-                    }
-                }, this)
+                // mx.data.create({
+                //     entity: this.entity,
+                //     callback: lang.hitch(this, function(obj) {
+                //         obj.set(this.attribute, localStorage.getItem(this.keyName));
+                //         mx.data.action({
+                //             params: {
+                //                 actionname: this.onfoundMF,
+                //                 applyto: "selection",
+                //                 guids: [obj.getGuid()]
+                //             }
+                //         });
+                //     }),
+                //     err: function(e) {
+                //         console.log(e);
+                //     }
+                // }, this)
             }
 
-            this._contextObj = obj;
+
             this._updateRendering(callback);
         },
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="LocalStorage.widget.LocalStorageReader" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/" mobile="true">
+<widget id="LocalStorage.widget.LocalStorageReader" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/" mobile="true">
     <name>LocalStorage Reader</name>
     <description>The description of this widget.</description>
 
@@ -15,7 +15,17 @@
            <category>General</category>
            <description></description>
        </property>
-       <property key="entity" type="entity" required="true">
+       <property key="attribute" type="attribute" required="true" isPath="optional" pathType="reference">
+           <caption>Attribute</caption>
+           <category>General</category>
+           <description>Where to write the entity when it's found. If the value of the localstorage item matches (`/^true|false$/`), it's treated as a boolean, otherwise it's treated as a string</description>
+           <attributeTypes>
+               <attributeType name="String" />
+               <attributeType name="Boolean" />
+           </attributeTypes>
+       </property>
+
+       <!-- <property key="entity" type="entity" required="true">
            <caption>Entity to create</caption>
            <category>General</category>
            <description>An entity of this type will be created by the widget and passed into the microflow (below)</description>
@@ -27,11 +37,11 @@
            <attributeTypes>
                <attributeType name="String" />
            </attributeTypes>
-       </property>
-       <property key="onfoundMF" type="microflow" required="false" entityProperty="entity">
+       </property> -->
+       <property key="onfoundMF" type="microflow" required="false">
            <caption>On Found</caption>
            <category>General</category>
-           <description>microflow to run when the LocalStorage item is found. Receives the newly created object (above) with the above attribute set to the value of the LS item.</description>
+           <description>microflow to run when the LocalStorage item is found. Receives the context object with the above (`attribute`) set to the value found it the LS item.</description>
            <returnType type="Void"></returnType>
        </property>
     </properties>
